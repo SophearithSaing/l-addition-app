@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'core/routing/app_router.dart';
+import 'core/theme/app_theme.dart';
 
 class LAdditionApp extends StatelessWidget {
   const LAdditionApp({super.key});
@@ -10,10 +11,7 @@ class LAdditionApp extends StatelessWidget {
     return MaterialApp.router(
       title: "L'Addition",
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color(0xFF1C1C1A)),
-        useMaterial3: true,
-      ),
+      theme: AppTheme.light,
       routerConfig: appRouter,
     );
   }
