@@ -6,9 +6,11 @@ import '../../../core/theme/app_spacing.dart';
 import '../../../core/widgets/loading_state.dart';
 import '../../export/presentation/export_controller.dart';
 import '../../manual_bill/presentation/manual_bill_controller.dart';
+import 'qr_attachment_controller.dart';
 import 'receipt_controller.dart';
 import 'widgets/classic_receipt.dart';
 import 'widgets/polished_receipt.dart';
+import 'widgets/qr_attachment_panel.dart';
 import 'widgets/receipt_action_bar.dart';
 import 'widgets/receipt_capture_boundary.dart';
 
@@ -21,6 +23,7 @@ class ReceiptPreviewScreen extends ConsumerWidget {
     final manualBill = ref.watch(manualBillControllerProvider);
     final variant = ref.watch(receiptVariantProvider);
     final exportState = ref.watch(exportControllerProvider);
+    final qrAttachment = ref.watch(qrAttachmentProvider);
     final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
     final receiptBoundaryKey = GlobalKey();
 
@@ -35,18 +38,21 @@ class ReceiptPreviewScreen extends ConsumerWidget {
           final restaurantName = bill?.restaurantName ?? '';
           final currencySymbol = bill?.currency.symbol ?? '฿';
           final receiptDate = DateTime.now();
+          final qrBytes = qrAttachment.asData?.value;
           final receiptWidget = switch (variant) {
             ReceiptVariant.classic => ClassicReceipt(
               restaurantName: restaurantName,
               currencySymbol: currencySymbol,
               result: result,
               date: receiptDate,
+              qrBytes: qrBytes,
             ),
             ReceiptVariant.polished => PolishedReceipt(
               restaurantName: restaurantName,
               currencySymbol: currencySymbol,
               result: result,
               date: receiptDate,
+              qrBytes: qrBytes,
             ),
           };
 
@@ -75,6 +81,15 @@ class ReceiptPreviewScreen extends ConsumerWidget {
                       .read(receiptVariantProvider.notifier)
                       .setVariant(selection.single);
                 },
+              ),
+              const SizedBox(height: AppSpacing.lg),
+              QrAttachmentPanel(
+                qrBytes: qrBytes,
+                isLoading: qrAttachment.isLoading,
+                onPick: () =>
+                    ref.read(qrAttachmentProvider.notifier).pickAndCrop(),
+                onRemove: () =>
+                    ref.read(qrAttachmentProvider.notifier).remove(),
               ),
               const SizedBox(height: AppSpacing.lg),
               if (result.diners.isEmpty)

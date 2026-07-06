@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 
 import '../../../../core/theme/app_spacing.dart';
@@ -13,12 +15,14 @@ class PolishedReceipt extends StatelessWidget {
     required this.currencySymbol,
     required this.result,
     required this.date,
+    this.qrBytes,
   });
 
   final String restaurantName;
   final String currencySymbol;
   final ReceiptResult result;
   final DateTime date;
+  final Uint8List? qrBytes;
 
   @override
   Widget build(BuildContext context) {
@@ -85,6 +89,17 @@ class PolishedReceipt extends StatelessWidget {
                 ReceiptSummaryRowData('Total', result.total),
               ],
             ),
+            if (qrBytes != null) ...[
+              const SizedBox(height: AppSpacing.lg),
+              Center(
+                child: Image.memory(
+                  qrBytes!,
+                  width: 160,
+                  height: 160,
+                  fit: BoxFit.contain,
+                ),
+              ),
+            ],
           ],
         ),
       ),
