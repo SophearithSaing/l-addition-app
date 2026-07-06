@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../../core/routing/route_names.dart';
 import '../../../core/theme/app_spacing.dart';
 import '../../../core/utils/number_parsing.dart';
 import '../../../core/widgets/app_button.dart';
@@ -252,11 +254,7 @@ class ManualEntryScreen extends ConsumerWidget {
             AppButton.primary(
               label: 'Generate receipt',
               onPressed: bill.hasBillItems
-                  ? () => ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                        content: Text('Receipt preview will be wired next.'),
-                      ),
-                    )
+                  ? () => context.goNamed(RouteNames.receiptPreview)
                   : null,
             ),
             const SizedBox(height: AppSpacing.sm),
