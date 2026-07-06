@@ -19,6 +19,7 @@ class ManualEntryScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final state = ref.watch(manualBillControllerProvider);
     final controller = ref.read(manualBillControllerProvider.notifier);
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
 
     return Scaffold(
       appBar: AppBar(title: const Text('Manual Entry')),
@@ -27,7 +28,12 @@ class ManualEntryScreen extends ConsumerWidget {
         error: (error, stackTrace) =>
             Center(child: Text('Could not load draft: $error')),
         data: (bill) => ListView(
-          padding: const EdgeInsets.all(AppSpacing.containerPaddingMobile),
+          padding: EdgeInsets.fromLTRB(
+            AppSpacing.containerPaddingMobile,
+            AppSpacing.containerPaddingMobile,
+            AppSpacing.containerPaddingMobile,
+            AppSpacing.containerPaddingMobile + bottomInset,
+          ),
           children: [
             Text(
               'Bill details',

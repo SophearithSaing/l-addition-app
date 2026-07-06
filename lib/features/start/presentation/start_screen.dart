@@ -10,10 +10,17 @@ class StartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bottomInset = MediaQuery.viewPaddingOf(context).bottom;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(AppSpacing.containerPaddingMobile),
+          padding: EdgeInsets.fromLTRB(
+            AppSpacing.containerPaddingMobile,
+            AppSpacing.containerPaddingMobile,
+            AppSpacing.containerPaddingMobile,
+            AppSpacing.containerPaddingMobile + bottomInset,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
