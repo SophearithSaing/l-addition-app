@@ -1,11 +1,11 @@
 {
-    "name": "l_addition_app",
-    "short_name": "l_addition_app",
+    "name": "L'Addition",
+    "short_name": "L'Addition",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#fcf9f5",
+    "theme_color": "#fcf9f5",
+    "description": "A polished bill-splitting app.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
