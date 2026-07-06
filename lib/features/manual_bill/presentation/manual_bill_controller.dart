@@ -54,8 +54,8 @@ class ManualBillController extends AsyncNotifier<ManualBillState> {
     final id = state.nextId;
     return state.copyWith(
       diners: [
-        ...state.diners,
         Diner(id: id, name: ''),
+        ...state.diners,
       ],
       nextId: id + 1,
     );
@@ -144,13 +144,13 @@ class ManualBillController extends AsyncNotifier<ManualBillState> {
     final id = state.nextId;
     return state.copyWith(
       sharedItems: [
-        ...state.sharedItems,
         SharedItem(
           id: id,
           name: '',
           amount: 0,
           participantIds: state.diners.map((d) => d.id).toSet(),
         ),
+        ...state.sharedItems,
       ],
       nextId: id + 1,
     );
