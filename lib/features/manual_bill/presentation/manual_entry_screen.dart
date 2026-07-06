@@ -90,6 +90,7 @@ class ManualEntryScreen extends ConsumerWidget {
             const SizedBox(height: AppSpacing.sm),
             for (final diner in bill.diners) ...[
               AppCard(
+                key: ValueKey('diner-${diner.id}'),
                 child: Column(
                   children: [
                     Row(
@@ -112,6 +113,7 @@ class ManualEntryScreen extends ConsumerWidget {
                     const SizedBox(height: AppSpacing.sm),
                     for (final item in diner.items)
                       _LineItemRow(
+                        key: ValueKey('diner-${diner.id}-item-${item.id}'),
                         name: item.name,
                         amount: item.amount,
                         onNameChanged: (value) => controller.updateDinerItem(
@@ -149,10 +151,12 @@ class ManualEntryScreen extends ConsumerWidget {
             const SizedBox(height: AppSpacing.sm),
             for (final item in bill.sharedItems) ...[
               AppCard(
+                key: ValueKey('shared-item-${item.id}'),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     _LineItemRow(
+                      key: ValueKey('shared-item-row-${item.id}'),
                       name: item.name,
                       amount: item.amount,
                       onNameChanged: (value) =>
@@ -241,6 +245,7 @@ class ManualEntryScreen extends ConsumerWidget {
             ),
             for (final adjustment in bill.adjustments)
               _LineItemRow(
+                key: ValueKey('adjustment-${adjustment.id}'),
                 name: adjustment.label,
                 amount: adjustment.amount,
                 nameLabel: 'Label',
@@ -308,6 +313,7 @@ class _SectionHeader extends StatelessWidget {
 
 class _LineItemRow extends StatelessWidget {
   const _LineItemRow({
+    super.key,
     required this.name,
     required this.amount,
     required this.onNameChanged,
