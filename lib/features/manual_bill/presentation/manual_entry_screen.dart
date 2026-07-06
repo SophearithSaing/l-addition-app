@@ -254,7 +254,7 @@ class ManualEntryScreen extends ConsumerWidget {
             AppButton.primary(
               label: 'Generate receipt',
               onPressed: bill.hasBillItems
-                  ? () => context.goNamed(RouteNames.receiptPreview)
+                  ? () => context.pushNamed(RouteNames.receiptPreview)
                   : null,
             ),
             const SizedBox(height: AppSpacing.sm),
