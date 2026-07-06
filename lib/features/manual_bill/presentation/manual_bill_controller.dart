@@ -55,7 +55,7 @@ class ManualBillController extends AsyncNotifier<ManualBillState> {
     return state.copyWith(
       diners: [
         ...state.diners,
-        Diner(id: id, name: 'Diner ${state.diners.length + 1}'),
+        Diner(id: id, name: ''),
       ],
       nextId: id + 1,
     );
