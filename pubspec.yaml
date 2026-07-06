@@ -45,6 +45,7 @@ dependencies:
   image_cropper: ^12.2.1
   screenshot: ^3.0.0
   share_plus: ^13.2.0
+  google_fonts: ^8.1.0
 
 dev_dependencies:
   flutter_test:
