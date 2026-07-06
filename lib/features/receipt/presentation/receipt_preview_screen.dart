@@ -110,7 +110,7 @@ class ReceiptPreviewScreen extends ConsumerWidget {
 
                           await ref
                               .read(exportControllerProvider.notifier)
-                              .captureAndShare(
+                              .captureSaveAndShare(
                                 boundary: boundary,
                                 restaurantName: restaurantName,
                                 date: receiptDate,

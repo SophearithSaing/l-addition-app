@@ -15,7 +15,7 @@ class ExportController extends AsyncNotifier<void> {
   @override
   void build() {}
 
-  Future<void> captureAndShare({
+  Future<void> captureSaveAndShare({
     required RenderRepaintBoundary boundary,
     required String restaurantName,
     DateTime? date,
@@ -25,7 +25,7 @@ class ExportController extends AsyncNotifier<void> {
     state = await AsyncValue.guard(() async {
       final service = ref.read(receiptExportServiceProvider);
       final bytes = await service.capturePng(boundary);
-      await service.sharePng(
+      await service.saveAndSharePng(
         bytes: bytes,
         restaurantName: restaurantName,
         date: date,

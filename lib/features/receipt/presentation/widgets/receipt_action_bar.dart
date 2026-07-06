@@ -19,13 +19,13 @@ class ReceiptActionBar extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         AppButton.primary(
-          label: 'Export / Share PNG',
+          label: 'Save & Share PNG',
           onPressed: onShare,
           isLoading: isSharing,
         ),
         const SizedBox(height: AppSpacing.sm),
         Text(
-          'A receipt image will be generated and opened in your share sheet.',
+          'A receipt image will be saved to Photos/Gallery and opened in your share sheet.',
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodySmall,
         ),

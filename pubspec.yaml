@@ -46,6 +46,7 @@ dependencies:
   screenshot: ^3.0.0
   share_plus: ^13.2.0
   google_fonts: ^8.1.0
+  image_gallery_saver_plus: ^5.0.0
 
 dev_dependencies:
   flutter_test:

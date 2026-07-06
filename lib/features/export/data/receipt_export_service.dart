@@ -2,6 +2,7 @@ import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
+import 'package:image_gallery_saver_plus/image_gallery_saver_plus.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../../core/utils/date_utils.dart';
@@ -21,7 +22,7 @@ class ReceiptExportService {
     return byteData.buffer.asUint8List();
   }
 
-  Future<void> sharePng({
+  Future<void> saveAndSharePng({
     required Uint8List bytes,
     required String restaurantName,
     DateTime? date,
@@ -29,6 +30,13 @@ class ReceiptExportService {
     final fileName = buildFileName(
       restaurantName: restaurantName,
       date: date ?? DateTime.now(),
+    );
+    final galleryName = fileName.replaceAll('.png', '');
+
+    await ImageGallerySaverPlus.saveImage(
+      bytes,
+      name: galleryName,
+      quality: 100,
     );
 
     await SharePlus.instance.share(
