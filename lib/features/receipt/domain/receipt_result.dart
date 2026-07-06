@@ -53,6 +53,24 @@ class ReceiptResult {
     required this.total,
   });
 
+  factory ReceiptResult.empty({List<Adjustment> adjustmentRows = const []}) {
+    return ReceiptResult(
+      diners: const [],
+      adjustmentRows: adjustmentRows,
+      subtotal: 0,
+      service: 0,
+      tax: 0,
+      adjustments: adjustmentRows.fold<double>(
+        0,
+        (sum, adjustment) => sum + adjustment.amount,
+      ),
+      discount: 0,
+      exactTotal: 0,
+      rounding: 0,
+      total: 0,
+    );
+  }
+
   final List<DinerReceiptResult> diners;
   final List<Adjustment> adjustmentRows;
   final double subtotal;
